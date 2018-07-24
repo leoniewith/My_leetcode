@@ -38,18 +38,58 @@ class Solution(object):
         :type S: str
         :rtype: int
         """
-        ans = bal = 0
-        for i, x in enumerate(S):
+        stack = [0] #The score of the current frame
+
+        for x in S:
             if x == '(':
-                bal += 1
+                stack.append(0)
             else:
-                bal -= 1
-                if S[i-1] == '(':
-                    ans += 1 << bal
-        return ans
+                v = stack.pop()
+                stack[-1] += max(2 * v, 1)
+
+        return stack.pop()
 
 
 s = Solution()
 x = '(()(()))'
 
 s.scoreOfParentheses(x)
+
+
+
+
+'''
+Intuition and Algorithm
+
+Every position in the string has a depth - some number of matching parentheses surrounding it. For example, the dot in (()(.())) has depth 2, because of these parentheses: (__(.__))
+
+Our goal is to maintain the score at the current depth we are on. When we see an opening bracket, we increase our depth, and our score at the new depth is 0. When we see a closing bracket, we add twice the score of the previous deeper part - except when counting (), which has a score of 1.
+
+For example, when counting (()(())), our stack will look like this:
+
+[0, 0] after parsing (
+[0, 0, 0] after (
+[0, 1] after )
+[0, 1, 0] after (
+[0, 1, 0, 0] after (
+[0, 1, 1] after )
+[0, 3] after )
+[6] after )
+
+
+
+class Solution(object):
+    def scoreOfParentheses(self, S):
+        stack = [0] #The score of the current frame
+
+        for x in S:
+            if x == '(':
+                stack.append(0)
+            else:
+                v = stack.pop()
+                stack[-1] += max(2 * v, 1)
+
+        return stack.pop()
+        
+        
+'''
