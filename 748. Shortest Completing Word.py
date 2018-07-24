@@ -30,6 +30,8 @@ licensePlate will contain digits, spaces, or letters (uppercase or lowercase).
 words will have a length in the range [10, 1000].
 Every words[i] will consist of lowercase letters, and have length in range [1, 15].
 '''
+from collections import defaultdict, Counter
+
 
 class Solution:
     def shortestCompletingWord(self, licensePlate, words):
@@ -38,4 +40,29 @@ class Solution:
         :type words: List[str]
         :rtype: str
         """
-        pass
+        res = ""
+        dic = defaultdict(int)
+
+        for i in licensePlate:
+            if i.isalpha():
+                dic[i.lower()] += 1
+
+        for w in words:
+            for k, v in dic.items():
+                if w.count(k) < v:
+                    break
+
+            else:
+                if not res:
+                    res = w
+                elif len(w) < len(res):
+                    res = w
+
+        return res
+
+s = Solution()
+
+licenseP = '1s3 456'
+words = ["looks", "pest", "stew", "show"]
+
+s.shortestCompletingWord(licenseP, words)
