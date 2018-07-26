@@ -27,4 +27,37 @@ class Solution:
         :type k: int
         :rtype: List[int]
         """
-        pass
+        a = [i for i in range(1, n + 1)]
+        for i in range(1, k):
+            a[i:] = a[:i - 1:-1]
+        return a
+
+
+
+'''
+Start with the numbers sorted, e.g., 1 2 3 4 5 6 7 8 9 10. 
+Then we only have difference 1, many times. 
+We can create the largest possible difference by making the smallest and largest number neighbors. 
+In the example, let's bring 10 next to 1. If we do this by reversing the whole subarray from 2 to 10, 
+then no other neighborships in 2 to 10 are affected: 1 10 9 8 7 6 5 4 3 2. 
+To create the next larger possible difference, 
+we can bring 2 next to 10 by reversing the subarray from 9 to 2: 1 10 2 3 4 5 6 7 8 9. 
+And so on, reversing shorter and shorter suffixes. Just create as many differences as requested.
+
+Python
+
+def constructArray(self, n, k):
+    a = range(1, n+1)
+    for i in range(1, k):
+        a[i:] = a[:i-1:-1]
+    return a
+    
+'''
+
+
+s = Solution()
+
+n = 10
+k = 6
+
+print(s.constructArray(n, k))
