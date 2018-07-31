@@ -16,7 +16,7 @@ Output:
 '''
 
 from itertools import permutations
-from copy import copy
+
 class Solution:
     def permute(self, nums):
         """

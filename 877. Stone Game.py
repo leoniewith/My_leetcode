@@ -40,31 +40,7 @@ class Solution:
         :type piles: List[int]
         :rtype: bool
         """
-        totalStones = sum(piles)
-        result = []
-
-        def recursive(piles):
-            if piles.__len__() == 2:
-                return result.append(max(piles[0], piles[1]))
-
-            if piles[0] > piles[-1]:
-                result.append(piles.pop(0))
-
-            elif piles[0] < piles[-1]:
-                result.append(piles.pop())
-
-            else:
-                if piles[1] > piles[~-1]:
-                    result.append(piles.pop())
-
-                elif piles[1] <= piles[~-1]:
-                    result.append(piles.pop(0))
-
-            piles.pop(0) if piles[0] > piles[-1] else piles.pop()
-            recursive(piles)
-
-        recursive(piles)
-        return sum(result) > totalStones / 2
+        return True
 
 stone = [3, 2, 10, 4, 1, 2]
 s = Solution()
