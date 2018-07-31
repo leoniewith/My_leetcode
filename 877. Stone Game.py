@@ -47,11 +47,18 @@ class Solution:
             if piles.__len__() == 2:
                 return result.append(max(piles[0], piles[1]))
 
-            if piles[0] >= piles[-1]:
+            if piles[0] > piles[-1]:
                 result.append(piles.pop(0))
 
             elif piles[0] < piles[-1]:
                 result.append(piles.pop())
+
+            else:
+                if piles[1] > piles[~-1]:
+                    result.append(piles.pop())
+
+                elif piles[1] <= piles[~-1]:
+                    result.append(piles.pop(0))
 
             piles.pop(0) if piles[0] > piles[-1] else piles.pop()
             recursive(piles)
@@ -59,9 +66,20 @@ class Solution:
         recursive(piles)
         return sum(result) > totalStones / 2
 
-stone = [3, 7, 2, 3]
+stone = [3, 2, 10, 4, 1, 2]
 s = Solution()
 print(s.stoneGame(stone))
+
+
+'''
+Alex clearly always wins the 2 pile game. With some effort, we can see that she always wins the 4 pile game.
+
+If Alex takes the first pile initially, she can always take the third pile. If she takes the fourth pile initially, she can always take the second pile. At least one of first + third, second + fourth is larger, so she can always win.
+
+We can extend this idea to N piles. Say the first, third, fifth, seventh, etc. piles are white, and the second, fourth, sixth, eighth, etc. piles are black. Alex can always take either all white piles or all black piles, and one of the colors must have a sum number of stones larger than the other color.
+
+Hence, Alex always wins the game.
+'''
 
 
 
