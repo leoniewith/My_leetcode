@@ -41,13 +41,12 @@ class Solution:
         result = dfs(k, n, [], [], 1)
         return result
 
-
 s = Solution()
 
 k = 2
 n = 5
 
-print(s.combinationSum3(k ,n))
+print(s.combinationSum3(k, n))
 
 
 
