@@ -24,7 +24,18 @@ class Solution:
         :type nums: List[int]
         :rtype: int
         """
-        return sum(map(lambda x: bin(x[0]^x[1]).count('1'), combinations(nums, 2)))  # time limit exceeded
+        # return sum(map(lambda x: bin(x[0]^x[1]).count('1'), combinations(nums, 2)))  # time limit exceeded
+
+        # 对比 ith 的0， 1 数量， score =  N(0) * N(1)
+
+        temp = zip(*map('{:032b}'.format, nums))
+
+        result = sum(b.count('0') * b.count('1') for b in temp)
+
+        return result
+
+
+
 
 s = Solution()
 
