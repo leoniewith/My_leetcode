@@ -25,7 +25,7 @@ Explanation:
 
 # 符号都存在奇数位， (1, 3, 5, 7, ...)
 # 按符号的位置递归
-
+import re, operator
 class Solution:
 
 
@@ -34,45 +34,21 @@ class Solution:
         :type input: str
         :rtype: List[int]
         """
-        # input = list(input)
-        #
-        # res = []
-        # operator_idx = [i for i in range(1, len(input), 2)]
-        #
-        # if operator_idx.__len__() == 1:
-        #     res.append(eval(''.join(input)))
-        #
-        # for i in operator_idx:
-        #     temp_calculate_result = str(eval(''.join(input[i-1: i+2])))
-        #     input = input[i+2:]
-        #     input.insert(i-1, temp_calculate_result)
-        #     self.diffWaysToCompute(input)
-        # return res
 
-        res = []
-        input = list(input)
+        tokens = re.split('(\D)', input)
+        nums = list(map(int, tokens[::2]))
+        ops = list(map({'+': operator.add, '-': operator.sub, '*': operator.mul}.get, tokens[1::2]))
 
-        def recursive(l):
-            operator_idx = [i for i in range(1, len(l), 2)]
+        def build(lo, hi):
+            if lo == hi:
+                return [nums[lo]]
+            return [ops[i](a, b)
+                    for i in range(lo, hi)
+                    for a in build(lo, i)
+                    for b in build(i + 1, hi)]
 
-            if operator_idx.__len__() == 1:
-                res.append(eval(''.join(l)))
-                return
-
-            for i in operator_idx:
-                temp_calculate_result = str(eval(''.join(l[i-1: i+2])))
-                l = l[i+2:]
-                l.insert(i-1, temp_calculate_result)
-                recursive(l)
-
-        for i in range(1, len(input), 2):
-            recursive(input)
-
-        return res
+        return build(0, len(nums) - 1)
 
 i = '2*3-4*5'
 s = Solution()
 print(s.diffWaysToCompute(i))
-
-
-
