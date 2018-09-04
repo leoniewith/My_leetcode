@@ -1,6 +1,7 @@
 '''
 Given an array arr that is a permutation of [0, 1, ..., arr.length - 1],
- we split the array into some number of "chunks" (partitions), and individually sort each chunk.
+ we split the array into some number of "chunks" (partitions),
+ and individually sort each chunk.
  After concatenating them, the result equals the sorted array.
 
 What is the most number of chunks we could have made?
@@ -39,7 +40,7 @@ class Solution:
         return ans
 
 
-arr = [1,0,2,3,4]
+arr = [4, 3, 2, 1, 0]
 
 s = Solution()
 print(s.maxChunksToSorted(arr))

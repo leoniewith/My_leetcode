@@ -35,6 +35,7 @@ class Solution:
         x = [AB[-c-d] for c in C for d in D]
         print(AB)
         print(x)
+        return sum(x)
 
 s = Solution()
 A = [ 1, 2]

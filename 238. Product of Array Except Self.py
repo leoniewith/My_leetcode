@@ -27,7 +27,7 @@ class Solution:
             if (i != 0):
                 product = product * i
         if (zeroNum > 1):
-            return [0 for i in nums]
+            return [0 for _ in range(len(nums))]
         elif (zeroNum == 0):
             return [product // i for i in nums]
         else:

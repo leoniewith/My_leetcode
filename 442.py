@@ -24,8 +24,10 @@ class Solution:
         :rtype: List[int]
         """
         res = []
-        for key, value in dict(Counter(nums)).items():
+        for key, value in Counter(nums).items():
             if value == 2:
                 res.append(key)
 
         return res
+
+        #return [n for n, count in Counter(nums).items() if count == 2]

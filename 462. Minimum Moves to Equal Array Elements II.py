@@ -28,13 +28,13 @@ class Solution:
         """
         nums.sort()
         median = nums[len(nums) // 2]
-
+        print(median)
         return sum([abs(n - median) for n in nums])
 
 
 s = Solution()
 
-nums = [1, 0, 0, 8, 6]
+nums = [1, 0, 0, 8, 6, 9]
 
 print(s.minMoves2(nums))
 

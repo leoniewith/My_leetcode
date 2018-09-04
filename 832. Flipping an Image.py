@@ -34,11 +34,11 @@ class Solution:
         :type A: List[List[int]]
         :rtype: List[List[int]]
         """
-        flip_image = list(map(lambda x: x[::-1], A))
+        flip_image = list(map(lambda x: x[::-1], A))   # Reverse each row
         print(flip_image)
         for i in range(len(A)):
 
-            flip_image[i] = list(map(lambda x: 1 - x, flip_image[i]))
+            flip_image[i] = list(map(lambda x: 1 - x, flip_image[i]))    # flip image
 
         print(flip_image)
         return flip_image
