@@ -1,34 +1,22 @@
-import time
-def add_one(given_arr):
+def is_matched(expr):
+    left = '({['
+    right = ')}]'
 
-    result = [0] * len(given_arr)
-    carry = 1
+    s = []
 
-    for i in range(len(given_arr)-1, -1, -1):
-        sum = given_arr[i] + carry
-        if sum == 10:
-            carry = 1
+    for c in expr:
+        if c in left:
+            s.append(c)
 
-        else:
-            carry = 0
+        elif c in right:
+            if s.__len__() == 0:
+                return False
 
-        result[i] = sum % 10
+            if right.index(c) != left.index(s.pop()):
+                return False
 
-    if carry == 1:
-        result.insert(0, 1)
-
-    return result
-
-def add_one_2(given_arr):
-    pre_sum = eval(''.join(map(str, given_arr)))
-
-    cur_sum = pre_sum + 1
-
-    result = list(map(int, str(cur_sum)))
-
-    return result
+    return s.__len__() == 0
 
 
-
-
-
+if __name__ == '__main__':
+    print(is_matched('{()()[(()())]}'))
