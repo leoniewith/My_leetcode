@@ -11,7 +11,7 @@ class Solution(object):
     def DFS_Path(self, root):
         """
         :type root: TreeNode
-        :rtype: paths
+        :rtype: path
         """
         if not root: return False
 
